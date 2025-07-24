@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  backend:
+    build: .
+    command: python -m src.backend.api.app
+    ports: [ "8000:8000" ]
+  dashboard:
+    image: node:20
+    working_dir: /usr/src/app
+    volumes: [ "./src/dashboard:/usr/src/app" ]
+    command: sh -c "npm install && npm run dev"
+    ports: [ "3000:3000" ]
