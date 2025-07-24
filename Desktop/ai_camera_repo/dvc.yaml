@@ -1,0 +1,12 @@
+stages:
+  prepare:
+    cmd: python src/ml/prepare_data.py
+    outs:
+      - data/processed
+  train:
+    cmd: python src/ml/train.py
+    deps:
+      - data/processed
+      - src/ml/model/yolo_config.yaml
+    outs:
+      - models/best.onnx

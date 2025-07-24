@@ -1,0 +1,5 @@
+model_name: yolov8n.yaml
+dataset_yaml: data/dataset.yaml
+img_size: 640
+epochs: 50
+batch: 32

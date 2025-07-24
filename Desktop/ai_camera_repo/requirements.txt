@@ -1,0 +1,8 @@
+opencv-python
+sounddevice
+scipy
+gtts
+google-cloud-storage
+requests
+RPi.GPIO
+websockets
