@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Test</title>
+</head>
+<body>
+    <h1>Simple Test</h1>
+    <div id="thicknessCarousel">
+        <div class="carousel-item selected" data-value="thin">
+            <img src="6250-3/images/thin.png" alt="Тонкий">
+        </div>
+        <div class="carousel-item" data-value="thick">
+            <img src="6250-3/images/bold.png" alt="Стандартный">
+        </div>
+    </div>
+    
+    <div id="stickerPreview"></div>
+    
+    <button onclick="testClick()">Test Click</button>
+    
+    <div id="results"></div>
+
+    <script>
+        // Current selections
+        let currentSelections = {
+            thickness: 'thin'
+        };
+        
+        // Simple sticker update
+        function updateStickerPreview() {
+            const preview = document.getElementById('stickerPreview');
+            if (!preview) return;
+            
+            let stickerNumber, stickerName, shape;
+            if (currentSelections.thickness === 'thin') {
+                stickerNumber = 15;
+                stickerName = 'sticker-15-stick.png';
+                shape = 'cutout';
+            } else {
+                stickerNumber = 11;
+                stickerName = 'sticker-11-stick.png';
+                shape = 'small-rectangle';
+            }
+            
+            const imageSrc = `6250-3/images/${stickerName}`;
+            preview.innerHTML = `<img src="${imageSrc}" alt="Стикер ${stickerNumber}" style="width: 100%; height: 100%; object-fit: contain;">`;
+            positionSticker(preview, shape);
+        }
+
+        // Position sticker
+        function positionSticker(preview, shape) {
+            const positions = {
+                'rectangle': { top: '75%', left: '50%', transform: 'translate(-50%, -50%)', width: '280px', height: '80px' },
+                'square': { top: '75%', left: '50%', transform: 'translate(-50%, -50%)', width: '100px', height: '100px' },
+                'circle': { top: '75%', left: '50%', transform: 'translate(-50%, -50%)', width: '100px', height: '100px' },
+                'small-rectangle': { top: '15%', left: '75%', transform: 'translate(-50%, -50%)', width: '300px', height: '80px' },
+                'cutout': { top: '80%', left: '50%', transform: 'translate(-50%, -50%)', width: '350px', height: '110px' }
+            };
+            
+            const position = positions[shape] || positions['rectangle'];
+            Object.assign(preview.style, position);
+        }
+
+        // Initialize carousels
+        function initCarousels() {
+            const thicknessCarousel = document.getElementById('thicknessCarousel');
+            
+            if (thicknessCarousel) {
+                thicknessCarousel.addEventListener('click', (e) => {
+                    const item = e.target.closest('.carousel-item');
+                    if (item) {
+                        // Remove selection from siblings
+                        const siblings = thicknessCarousel.querySelectorAll('.carousel-item');
+                        siblings.forEach(sibling => sibling.classList.remove('selected'));
+                        
+                        // Add selection to clicked item
+                        item.classList.add('selected');
+                        
+                        // Update current selection
+                        const value = item.dataset.value;
+                        currentSelections.thickness = value;
+                        
+                        console.log('Thickness selected:', value);
+                        
+                        // Update sticker preview
+                        updateStickerPreview();
+                    }
+                });
+            }
+        }
+
+        function testClick() {
+            document.getElementById('results').innerHTML = 'Test clicked!';
+            updateStickerPreview();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded');
+            initCarousels();
+            updateStickerPreview();
+        });
+    </script>
+</body>
+</html>

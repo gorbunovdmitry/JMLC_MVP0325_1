@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 6250-3</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+        .test-result { margin: 10px 0; padding: 5px; background: #f0f0f0; }
+        .error { background: #ffcccc; }
+        .success { background: #ccffcc; }
+    </style>
+</head>
+<body>
+    <h1>Тест 6250-3</h1>
+    
+    <div class="test-section">
+        <h3>Проверка элементов</h3>
+        <div id="element-test"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Проверка функций</h3>
+        <div id="function-test"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Проверка изображений</h3>
+        <div id="image-test"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Проверка инициализации</h3>
+        <div id="init-test"></div>
+    </div>
+
+    <script>
+        function addResult(containerId, message, isError = false) {
+            const container = document.getElementById(containerId);
+            const div = document.createElement('div');
+            div.className = `test-result ${isError ? 'error' : 'success'}`;
+            div.textContent = message;
+            container.appendChild(div);
+        }
+
+        // Проверка элементов
+        function testElements() {
+            const thicknessCarousel = document.getElementById('thicknessCarousel');
+            const stickerPreview = document.getElementById('stickerPreview');
+            
+            if (thicknessCarousel) {
+                addResult('element-test', '✅ thicknessCarousel найден');
+            } else {
+                addResult('element-test', '❌ thicknessCarousel НЕ найден', true);
+            }
+            
+            if (stickerPreview) {
+                addResult('element-test', '✅ stickerPreview найден');
+            } else {
+                addResult('element-test', '❌ stickerPreview НЕ найден', true);
+            }
+        }
+
+        // Проверка функций
+        function testFunctions() {
+            if (typeof initCarousels === 'function') {
+                addResult('function-test', '✅ initCarousels функция найдена');
+            } else {
+                addResult('function-test', '❌ initCarousels функция НЕ найдена', true);
+            }
+            
+            if (typeof updateStickerPreview === 'function') {
+                addResult('function-test', '✅ updateStickerPreview функция найдена');
+            } else {
+                addResult('function-test', '❌ updateStickerPreview функция НЕ найдена', true);
+            }
+            
+            if (typeof positionSticker === 'function') {
+                addResult('function-test', '✅ positionSticker функция найдена');
+            } else {
+                addResult('function-test', '❌ positionSticker функция НЕ найдена', true);
+            }
+        }
+
+        // Проверка изображений
+        function testImages() {
+            const img11 = new Image();
+            const img15 = new Image();
+            
+            img11.onload = () => addResult('image-test', '✅ sticker-11-stick.png загружен');
+            img11.onerror = () => addResult('image-test', '❌ sticker-11-stick.png НЕ загружен', true);
+            img11.src = '6250-3/images/sticker-11-stick.png';
+            
+            img15.onload = () => addResult('image-test', '✅ sticker-15-stick.png загружен');
+            img15.onerror = () => addResult('image-test', '❌ sticker-15-stick.png НЕ загружен', true);
+            img15.src = '6250-3/images/sticker-15-stick.png';
+        }
+
+        // Проверка инициализации
+        function testInitialization() {
+            try {
+                if (typeof initCarousels === 'function') {
+                    initCarousels();
+                    addResult('init-test', '✅ initCarousels выполнен без ошибок');
+                } else {
+                    addResult('init-test', '❌ initCarousels не найден', true);
+                }
+                
+                if (typeof updateStickerPreview === 'function') {
+                    updateStickerPreview();
+                    addResult('init-test', '✅ updateStickerPreview выполнен без ошибок');
+                } else {
+                    addResult('init-test', '❌ updateStickerPreview не найден', true);
+                }
+            } catch (error) {
+                addResult('init-test', `❌ Ошибка при инициализации: ${error.message}`, true);
+            }
+        }
+
+        // Запуск тестов
+        document.addEventListener('DOMContentLoaded', () => {
+            testElements();
+            testFunctions();
+            testImages();
+            testInitialization();
+        });
+    </script>
+
+    <!-- Включаем скрипт из 6250-3 -->
+    <script src="6250-3/designer-advanced.html"></script>
+</body>
+</html>

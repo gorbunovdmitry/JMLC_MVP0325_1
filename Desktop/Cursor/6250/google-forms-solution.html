@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Решение через Google Forms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .solution {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .step {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-left: 4px solid #007bff;
+        }
+        code {
+            background: #e9ecef;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .form-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Решение проблемы CORS через Google Forms</h1>
+    
+    <div class="solution">
+        <h2>Проблема</h2>
+        <p>Google Apps Script блокирует CORS запросы с GitHub Pages. Это стандартная политика безопасности браузеров.</p>
+    </div>
+    
+    <div class="solution">
+        <h2>Решение: Google Forms</h2>
+        <p>Используем Google Forms для сбора данных - это обходит проблему CORS и проще в настройке.</p>
+        
+        <div class="step">
+            <h3>Шаг 1: Создайте Google Form</h3>
+            <p>1. Перейдите на <a href="https://forms.google.com" target="_blank">Google Forms</a></p>
+            <p>2. Создайте новую форму</p>
+            <p>3. Добавьте поля:</p>
+            <ul>
+                <li>Дата и время (короткий ответ)</li>
+                <li>Номер варианта (короткий ответ)</li>
+                <li>Толщина (короткий ответ)</li>
+                <li>Форма (короткий ответ)</li>
+                <li>Цвет (короткий ответ)</li>
+                <li>Картинка (короткий ответ)</li>
+                <li>Цена (короткий ответ)</li>
+            </ul>
+        </div>
+        
+        <div class="step">
+            <h3>Шаг 2: Получите URL формы</h3>
+            <p>1. Нажмите "Отправить" в правом верхнем углу</p>
+            <p>2. Скопируйте ссылку на форму</p>
+            <p>3. Замените <code>viewform</code> на <code>formResponse</code> в URL</p>
+            <p>Пример: <code>https://docs.google.com/forms/d/FORM_ID/viewform</code> → <code>https://docs.google.com/forms/d/FORM_ID/formResponse</code></p>
+        </div>
+        
+        <div class="step">
+            <h3>Шаг 3: Обновите JavaScript код</h3>
+            <p>Замените функцию <code>sendDataToGoogleSheets</code> на:</p>
+            <pre><code>async function sendDataToGoogleSheets(data) {
+  try {
+    const formUrl = 'YOUR_GOOGLE_FORM_URL_HERE';
+    
+    // Создаем FormData для отправки
+    const formData = new FormData();
+    formData.append('entry.XXXXXXX', data.timestamp); // Замените X на ID поля
+    formData.append('entry.XXXXXXX', data.variant);
+    formData.append('entry.XXXXXXX', data.thickness);
+    formData.append('entry.XXXXXXX', data.shape);
+    formData.append('entry.XXXXXXX', data.color);
+    formData.append('entry.XXXXXXX', data.picture);
+    formData.append('entry.XXXXXXX', data.price);
+    
+    const response = await fetch(formUrl, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors' // Обходит CORS
+    });
+    
+    console.log('Данные отправлены в Google Form');
+    return true;
+  } catch (error) {
+    console.error('Ошибка:', error);
+    return false;
+  }
+}</code></pre>
+        </div>
+        
+        <div class="step">
+            <h3>Шаг 4: Получите ID полей формы</h3>
+            <p>1. Откройте форму в режиме редактирования</p>
+            <p>2. Нажмите F12 (Developer Tools)</p>
+            <p>3. Найдите элементы <code>&lt;input&gt;</code> с атрибутом <code>name="entry.XXXXXXX"</code></p>
+            <p>4. Скопируйте эти ID и замените X в коде выше</p>
+        </div>
+    </div>
+    
+    <div class="solution">
+        <h2>Альтернативное решение: JSONP</h2>
+        <p>Если хотите использовать Google Apps Script, используйте JSONP версию из файла <code>data-collection-jsonp.js</code></p>
+    </div>
+    
+    <div class="solution">
+        <h2>Рекомендация</h2>
+        <p><strong>Используйте Google Forms</strong> - это самое простое и надежное решение для сбора данных без проблем с CORS.</p>
+    </div>
+</body>
+</html>
