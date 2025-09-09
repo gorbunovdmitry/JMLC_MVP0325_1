@@ -1,0 +1,37 @@
+:root {
+  --black:#000;   --red:#EF3124; --gray:#BABBC2; --mid:#747474;
+  --light:#F3F4F5;--border:#E6E6E6; --error:#D8221E;
+  --gray2:#D9D9D9; --gray3:#7F7F83; --white:#fff;
+  font-family:'Roboto', sans-serif;
+}
+body { margin:0; background:var(--light); color:var(--black); }
+#app { width:100vw; height:100vh; overflow-x:auto; display:flex; scroll-snap-type:x mandatory; scroll-behavior:smooth; }
+.screen { min-width:100vw; height:100vh; scroll-snap-align:start; padding:24px; box-sizing:border-box; display:flex; flex-direction:column; position:relative;}
+.card, .btn { border-radius:24px; }
+.btn-next { background:var(--black); color:#fff; font-weight:500; font-size:16px; border:none; padding:16px 0; border-radius:24px; width:100%; margin-top:auto; }
+.btn-next:disabled { background:var(--gray2); color:var(--gray3);}
+.btn-back { background:transparent; border:none; color:var(--black); font-size:24px; position:absolute; left:0; top:0;}
+.slider { margin:32px 0 16px 0; }
+input[type=range] { width:100%; accent-color: var(--red);}
+input[type=number] { width:100%; font-size:20px; border:none; background:transparent; text-align:center; }
+input[type=number]:focus { outline:none; }
+.switch-row { display:flex; flex-direction:column; gap:16px; margin:32px 0 16px 0;}
+.switch { display:flex; align-items:center; }
+.switch input { display:none; }
+.switch label { background:var(--gray2); border-radius:24px; padding:8px 20px; font-size:16px; font-weight:500; color:var(--mid); cursor:pointer; margin-left:8px;}
+.switch input:checked + label { background:var(--red); color:var(--white);}
+.error { color:var(--error); font-size:12px; margin-top:8px;}
+.indicator { text-align:center; font-size:12px; color:var(--gray); font-weight:500; margin-top:24px;}
+.indicator .active { color:var(--black);}
+.offer-badge { background:var(--red); color:var(--white); font-size:12px; font-weight:700; border-radius:12px; padding:2px 10px; margin-left:8px;}
+.offer-card { background:var(--white); border-radius:24px; padding:20px; margin-bottom:16px; box-sizing:border-box; }
+.offer-card .pay { font-size:20px; font-weight:700; }
+.offer-card .desc { color:var(--mid); font-size:14px; margin-bottom:8px;}
+.offer-card .btn { background:var(--gray2); color:var(--gray3); font-weight:500; border:none; width:100%; padding:12px 0; border-radius:16px; margin-top:12px;}
+.offer-columns { display:flex; gap:16px; margin-top:24px;}
+.offer-col { flex:1; }
+.offer-col-title { font-size:14px; color:var(--mid); font-weight:500; margin-bottom:8px;}
+.offer-logo { display:flex; justify-content:center; margin:16px 0;}
+@media (max-width: 375px) {
+  .screen { padding:12px; }
+}

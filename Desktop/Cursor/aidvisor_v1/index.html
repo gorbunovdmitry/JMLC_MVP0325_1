@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AidVisor - Умная камера с ИИ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-camera"></i>
+                <span>AidVisor</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features">Возможности</a>
+                <a href="#pricing">Цены</a>
+                <a href="#privacy">Безопасность</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-image">
+                <img src="images/main.jpg" alt="AidVisor AI Camera" class="main-image">
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">Meet AidVisor - the AI camera that sees the world with you</h1>
+                <p class="hero-subtitle">It's not just a camera. It's your real-time companion — ready to answer, translate, and guide you, without ever pulling out your phone.</p>
+                <button class="cta-button primary">Get AidVisor</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Three Steps Section -->
+    <section class="three-steps">
+        <div class="container">
+            <h2 class="section-title">The Magic in Three Steps</h2>
+            <p class="steps-subtitle">Point, shoot, and let AI do the rest</p>
+            <div class="steps-compact">
+                <div class="step-compact">
+                    <i class="fas fa-hand-pointer"></i>
+                    <div class="step-text">
+                        <h3>Point</h3>
+                        <p>Simply point your AidVisor at anything you want to understand</p>
+                    </div>
+                </div>
+                <div class="step-compact">
+                    <i class="fas fa-camera"></i>
+                    <div class="step-text">
+                        <h3>Shoot</h3>
+                        <p>Take a photo or start recording with a single tap</p>
+                    </div>
+                </div>
+                <div class="step-compact">
+                    <i class="fas fa-brain"></i>
+                    <div class="step-text">
+                        <h3>Learn</h3>
+                        <p>Get instant AI-powered insights, translations, and explanations</p>
+                    </div>
+                </div>
+            </div>
+            <p class="steps-subtitle">That's it. No apps, no downloads, no complexity.</p>
+            <button class="cta-button secondary">Show me more</button>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="container">
+            <h2 class="section-title">Use Cases</h2>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="case-card">
+                        <div class="case-image-container">
+                            <img src="images/image museum.png" alt="Travel" class="case-image">
+                        </div>
+                        <div class="case-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <h3>Travel</h3>
+                        <p>Read signs, translate menus, and navigate foreign cities with confidence</p>
+                    </div>
+                    <div class="case-card">
+                        <div class="case-image-container">
+                            <img src="images/image2.png" alt="Learning" class="case-image">
+                        </div>
+                        <div class="case-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Learning</h3>
+                        <p>Identify plants, understand complex diagrams, and learn from the world around you</p>
+                    </div>
+                    <div class="case-card">
+                        <div class="case-image-container">
+                            <img src="images/image 3.png" alt="Life Hacks" class="case-image">
+                        </div>
+                        <div class="case-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Life Hacks</h3>
+                        <p>Get cooking tips, repair instructions, and creative solutions on the fly</p>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" onclick="scrollCarousel(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="scrollCarousel(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple Pricing</h2>
+            <div class="pricing-container">
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>AidVisor Device</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">490</span>
+                        </div>
+                        <p>One-time purchase</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> AidVisor AI Camera</li>
+                        <li><i class="fas fa-check"></i> Basic AI features</li>
+                        <li><i class="fas fa-check"></i> Offline functionality</li>
+                        <li><i class="fas fa-check"></i> 1 year warranty</li>
+                        <li><i class="fas fa-check"></i> Free mobile app</li>
+                    </ul>
+                    <button class="cta-button primary">Buy Device</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Section -->
+    <section class="subscription">
+        <div class="container">
+            <h2 class="section-title">Premium Subscription</h2>
+            <p class="subscription-intro">Unlock the full potential of AI with our comprehensive subscription plan</p>
+            <div class="subscription-container">
+                <div class="subscription-card">
+                    <div class="subscription-header">
+                        <h3>AI Subscription</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">20</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p>Unlimited AI access</p>
+                    </div>
+                    <div class="subscription-features">
+                        <div class="feature-group">
+                            <h4><i class="fas fa-mobile-alt"></i> Mobile Application</h4>
+                            <p>Full-featured mobile app for iOS and Android with advanced controls and settings</p>
+                        </div>
+                        <div class="feature-group">
+                            <h4><i class="fas fa-chart-line"></i> Advanced Analytics</h4>
+                            <p>Detailed insights from your meetings, lessons, and daily life experiences</p>
+                        </div>
+                        <div class="feature-group">
+                            <h4><i class="fas fa-robot"></i> Any AI Model</h4>
+                            <p>Choose from the most popular AI models: GPT-4, Claude, Gemini, Llama, and more</p>
+                        </div>
+                        <div class="feature-group">
+                            <h4><i class="fas fa-infinity"></i> Unlimited Questions</h4>
+                            <p>Ask as many questions as you want without any restrictions or limits</p>
+                        </div>
+                    </div>
+                    <button class="cta-button secondary">Subscribe Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="privacy" id="privacy">
+        <div class="container">
+            <h2 class="section-title">Privacy Is Not Optional — It's Built-In</h2>
+            <p class="privacy-intro">Your data stays yours. Period.</p>
+            <div class="privacy-features">
+                <div class="privacy-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-power-off"></i>
+                    </div>
+                    <h3>Physical Kill-Switches</h3>
+                    <p>Turn off AI processing completely with physical buttons</p>
+                </div>
+                <div class="privacy-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-wifi-slash"></i>
+                    </div>
+                    <h3>Offline Work</h3>
+                    <p>Core AI features work without internet connection</p>
+                </div>
+                <div class="privacy-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>No Tracking</h3>
+                    <p>We don't collect, store, or analyze your personal data</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="cta-button secondary">Count me in</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why This Section -->
+    <section class="why-this">
+        <div class="container">
+            <h2 class="section-title">Why AidVisor, Not a Phone or Glasses?</h2>
+            <div class="why-features">
+                <div class="why-feature">
+                    <h3><i class="fas fa-eye"></i> Dedicated AI Processing</h3>
+                    <p>Faster, more accurate results than your phone</p>
+                </div>
+                <div class="why-feature">
+                    <h3><i class="fas fa-battery-full"></i> All-Day Battery</h3>
+                    <p>Without draining your phone's power</p>
+                </div>
+                <div class="why-feature">
+                    <h3><i class="fas fa-hand-paper"></i> No Social Stigma</h3>
+                    <p>No awkwardness of wearing smart glasses</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Early Access Section -->
+    <section class="early-access">
+        <div class="container">
+            <h2 class="section-title">Be Among the First</h2>
+            <p class="early-access-text">Join our exclusive early access program and get 25% off the retail price. Plus, be the first to experience the future of AI photography.</p>
+            <button class="cta-button primary">Reserve my spot</button>
+        </div>
+    </section>
+
+    <!-- Final Pricing Section -->
+    <section class="final-pricing">
+        <div class="container">
+            <h2 class="section-title">Get Your AidVisor Today</h2>
+            <div class="final-pricing-container">
+                <div class="pricing-visual">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center" alt="AidVisor Device" class="pricing-device-image">
+                    <div class="device-specs">
+                        <h3>AidVisor AI Camera</h3>
+                        <p>Smart AI-powered device</p>
+                    </div>
+                </div>
+                <div class="pricing-details">
+                    <div class="price-highlight">
+                        <div class="main-price">
+                            <span class="currency">$</span>
+                            <span class="amount">490</span>
+                        </div>
+                        <div class="price-description">
+                            <p class="price-label">Device Price</p>
+                            <p class="price-subtitle">One-time purchase</p>
+                        </div>
+                    </div>
+                    <div class="subscription-highlight">
+                        <div class="sub-price">
+                            <span class="currency">$</span>
+                            <span class="amount">20</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <div class="sub-description">
+                            <p class="sub-label">AI Subscription</p>
+                            <p class="sub-subtitle">Unlimited AI access</p>
+                        </div>
+                    </div>
+                    <div class="cta-group">
+                        <button class="cta-button primary">Buy Device</button>
+                        <button class="cta-button secondary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Mini FAQ</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does the battery last?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The AidVisor lasts up to 8 hours of continuous use on a single charge. With normal usage patterns, you'll get through a full day without needing to recharge.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What AI models are available?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>With the subscription, you can choose from GPT-4, Claude, Gemini, and other leading AI models. Switch between them anytime based on your needs.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>When will it ship?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>First shipments begin in Q2 2024. Early access members get priority shipping and will receive their cameras before the general public.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-camera"></i>
+                    <span>AidVisor</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#privacy">Privacy</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AidVisor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
