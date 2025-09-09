@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест JSONP версии</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #333;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>Тест JSONP версии</h1>
+    
+    <div class="test-section">
+        <h2>Тест 1: Проверка JSONP без данных</h2>
+        <p>Проверяем, что Google Apps Script отвечает на JSONP запросы</p>
+        <button onclick="testJSONPBasic()">Тест JSONP</button>
+        <div id="result1" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Тест 2: Отправка данных стикера через JSONP</h2>
+        <p>Отправляем реальные данные стикера через JSONP</p>
+        <button onclick="testJSONPSticker()">Тест данных стикера</button>
+        <div id="result2" class="result"></div>
+    </div>
+
+    <script>
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxenb1I-6wje2xrnrbHsfbYpyxxEJ65zodB2Gqhfek6rcb0A_IAyM-VsbGa08o3tc9M/exec';
+
+        function testJSONPBasic() {
+            const resultDiv = document.getElementById('result1');
+            resultDiv.textContent = 'Отправка JSONP запроса...';
+            resultDiv.className = 'result';
+            
+            const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+            
+            window[callbackName] = function(response) {
+                delete window[callbackName];
+                if (document.getElementById('jsonp_script')) {
+                    document.head.removeChild(document.getElementById('jsonp_script'));
+                }
+                
+                resultDiv.textContent = `✅ JSONP запрос успешен!\nРезультат: ${JSON.stringify(response, null, 2)}`;
+                resultDiv.className = 'result success';
+            };
+            
+            const script = document.createElement('script');
+            script.id = 'jsonp_script';
+            script.src = GOOGLE_SCRIPT_URL + '?callback=' + callbackName;
+            script.onerror = function() {
+                delete window[callbackName];
+                if (document.getElementById('jsonp_script')) {
+                    document.head.removeChild(document.getElementById('jsonp_script'));
+                }
+                resultDiv.textContent = '❌ Ошибка загрузки JSONP скрипта';
+                resultDiv.className = 'result error';
+            };
+            
+            document.head.appendChild(script);
+        }
+
+        function testJSONPSticker() {
+            const resultDiv = document.getElementById('result2');
+            resultDiv.textContent = 'Отправка данных стикера через JSONP...';
+            resultDiv.className = 'result';
+            
+            const stickerData = {
+                timestamp: new Date().toISOString(),
+                variant: 1,
+                thickness: 'thick',
+                shape: 'Прямоугольник',
+                color: 'Красный',
+                picture: 'Пустой',
+                price: 199
+            };
+            
+            const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+            
+            window[callbackName] = function(response) {
+                delete window[callbackName];
+                if (document.getElementById('jsonp_script2')) {
+                    document.head.removeChild(document.getElementById('jsonp_script2'));
+                }
+                
+                if (response.success) {
+                    resultDiv.textContent = `✅ Данные стикера отправлены!\nРезультат: ${JSON.stringify(response, null, 2)}`;
+                    resultDiv.className = 'result success';
+                } else {
+                    resultDiv.textContent = `❌ Ошибка: ${response.error}\nРезультат: ${JSON.stringify(response, null, 2)}`;
+                    resultDiv.className = 'result error';
+                }
+            };
+            
+            const script = document.createElement('script');
+            script.id = 'jsonp_script2';
+            const params = new URLSearchParams({
+                callback: callbackName,
+                data: JSON.stringify(stickerData)
+            });
+            script.src = GOOGLE_SCRIPT_URL + '?' + params.toString();
+            script.onerror = function() {
+                delete window[callbackName];
+                if (document.getElementById('jsonp_script2')) {
+                    document.head.removeChild(document.getElementById('jsonp_script2'));
+                }
+                resultDiv.textContent = '❌ Ошибка загрузки JSONP скрипта';
+                resultDiv.className = 'result error';
+            };
+            
+            document.head.appendChild(script);
+        }
+    </script>
+</body>
+</html>
